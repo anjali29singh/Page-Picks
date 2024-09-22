@@ -6,22 +6,40 @@ export default function BookSelector() {
   const handleSpanClick = () => {
     fileInputRef.current.click();
   };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      console.log(file);
+    }
+  };
+
   return (
-    <div>
+    <div className={styles.formContainer}>
       <form>
         <div className={styles.container}>
-          <div>
+          <div className={styles.chooseFile}>
             <span
+              role="button"
+              tabIndex={0}
               className="material-symbols-outlined"
               style={{ fontSize: "100px", color: "#1a1450", cursor: "pointer" }}
               onClick={handleSpanClick}
+              onKeyDown={(e) => {
+                e.key === "Enter" && handleSpanClick();
+              }}
             >
               cloud_upload
             </span>
-
-            <p>drop your file here</p>
+            <span>drop your file here</span>
           </div>
-          <input type="file" ref={fileInputRef} style={{ display: "none" }} />
+          <input
+            type="file"
+            accept="application/pdf"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
         </div>
       </form>
     </div>

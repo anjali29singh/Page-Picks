@@ -2,3 +2,30 @@
   display: flex;
   flex-direction: row;
 }
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+.chooseFile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px dashed #1a1450;
+  border-radius: 10px;
+  cursor: pointer;
+  transform: background-color 0.3s ease;
+}
+
+.chooseFile:hover {
+  background-color: #f3f3f3;
+}
+.chooseFile span:last-child {
+  font-size: 18px;
+  color: #1a1450;
+  margin-top: 10px;
+  text-align: center;
+}
