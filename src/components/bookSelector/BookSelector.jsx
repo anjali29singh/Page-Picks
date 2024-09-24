@@ -1,22 +1,38 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./bookSelector.module.css";
+
 export default function BookSelector() {
   const fileInputRef = useRef(null);
+
+  const [file, setFile] = useState(null);
 
   const handleSpanClick = () => {
     fileInputRef.current.click();
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
+    const inputFile = e.target.files[0];
+
+    if (inputFile) {
+      setFile(inputFile);
+    }
+  };
+
+  const handlePdfSubmit = (e) => {
+    e.preventDefault();
+
     if (file) {
       console.log(file);
     }
   };
 
+  useEffect(() => {
+    console.log(file);
+  }, [file]);
+
   return (
     <div className={styles.formContainer}>
-      <form>
+      <form onSubmit={handlePdfSubmit}>
         <div className={styles.container}>
           <div className={styles.chooseFile}>
             <span
@@ -40,6 +56,8 @@ export default function BookSelector() {
             style={{ display: "none" }}
             onChange={handleFileChange}
           />
+
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>
